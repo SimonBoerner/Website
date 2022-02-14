@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyWebsite</title>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Contact Form</title>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        // https://dashboard.emailjs.com/admin/integration
+        emailjs.init("user_iXc3VwjXOpWeGtv1BiVet");
+      })();
+    </script>
+    <script type="text/javascript">
+      window.onload = function () {
+        document
+          .getElementById("contact-form")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            // generate a five digit number for the contact_number variable
+            this.contact_number.value = (Math.random() * 100000) | 0;
+            // these IDs from the previous steps
+            emailjs.sendForm("contact_service", "template_9fx9cvm", this).then(
+              function () {
+                console.log("SUCCESS!");
+              },
+              function (error) {
+                console.log("FAILED...", error);
+              }
+            );
+          });
+      };
+    </script>
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <header>
+        <div class="avatar"><img src="./Avatar.jpg" alt="Avatar" /></div>
+        <nav>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <h1>Hi! I'm Simon. Welcome to my Site.</h1>
+        <h2>About</h2>
+        <div class="flexMain">
+          <div class="flexDiv flexDiv1">
+            <h3>Lorem ipsum dolor</h3>
+            <br />
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
+              voluptatibus laboriosam recusandae aperiam assumenda saepe quis
+              maxime! Quibusdam dignissimos aperiam error corrupti perferendis
+              rem officia. Vero enim omnis natus ut. Quis deleniti ad id ut quia
+              incidunt tenetur! Minima nesciunt in odio repellat voluptatibus
+              quis provident ut totam incidunt! Delectus, ad. Incidunt
+              necessitatibus odit unde distinctio natus expedita aut eligendi.
+              Sed voluptatibus cumque consectetur iste hic corporis culpa cum
+              autem! Nemo ratione, quaerat quis ut inventore ab? Nisi odio,
+              laudantium, labore error nulla saepe debitis exercitationem,
+              veniam a enim vero! Similique beatae perspiciatis sed minima
+              totam, quisquam, consequuntur amet autem numquam sapiente eligendi
+            </p>
+          </div>
+
+          <div class="flexDiv2">
+            <h3>Skills</h3>
+            <br />
+
+            <p>HTML</p>
+            <div class="container">
+              <div class="skills html">30%</div>
+            </div>
+
+            <p>CSS</p>
+            <div class="container">
+              <div class="skills css">25%</div>
+            </div>
+
+            <p>JavaScript</p>
+            <div class="container">
+              <div class="skills js">20%</div>
+            </div>
+
+            <p>TypeScript</p>
+            <div class="container">
+              <div class="skills ts">20%</div>
+            </div>
+          </div>
+        </div>
+        <form id="contact-form">
+          <input type="hidden" name="contact_number" />
+          <label>Name</label>
+          <input type="text" name="user_name" />
+          <label>Email</label>
+          <input type="email" name="user_email" />
+          <label>Message</label>
+          <textarea name="message"></textarea>
+          <input type="submit" value="Send" />
+        </form>
+      </main>
+    </div>
+  </body>
+</html>
